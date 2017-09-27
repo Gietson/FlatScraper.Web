@@ -12,9 +12,9 @@ before_script:
   - npm install -g @angular/cli
   - npm install -g karma
 script:
-  - ./ci/travis-build.sh
+  - ./scripts/travis-build.sh
 after_success:
-  - ./ci/after-success.sh
+  - ./scripts/after-success.sh
 notifications:
   email:
     on_success: never
