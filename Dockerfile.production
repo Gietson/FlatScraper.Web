@@ -1,14 +1,10 @@
-# We label our stage as ‘builder’
-FROM node:8-alpine
+FROM node
 
-COPY package.json package-lock.json ./
+ENV HOME=/usr/src/app
+RUN mkdir $HOME
+WORKDIR $HOME
 
-## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
+RUN npm install -g angular-cli
 
-WORKDIR /ng-app
-
-COPY . .
-
-## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build --prod
+EXPOSE 4200
+EXPOSE 49153
