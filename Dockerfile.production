@@ -1,8 +1,4 @@
-FROM node:8-alpine
-
-ENV HOME=/usr/src/app
-RUN mkdir $HOME
-WORKDIR $HOME
+FROM node
 
 RUN npm install -g angular-cli
 
