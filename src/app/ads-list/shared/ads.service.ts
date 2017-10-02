@@ -9,7 +9,7 @@ export class AdsService {
   constructor(private http: Http) { }
 
   getAds(): Observable<IAd[]> {
-    return this.http.get("localhost/api/ad")
+    return this.http.get("/api/ad")
       .map((response: Response) => {
         return <IAd[]>response.json();
       })

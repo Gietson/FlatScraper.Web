@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdsService } from "./shared/ads.service"
+import { IAd } from "../ads-list/shared/ads.model";
 
 @Component({
   selector: 'ads-list',
@@ -7,9 +8,15 @@ import { AdsService } from "./shared/ads.service"
   styleUrls: ['./ads-list.component.css']
 })
 export class AdsListComponent implements OnInit {
+  ads: IAd[];
 
   constructor(private adsService: AdsService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.adsService.getAds().subscribe((ads) => {
+      console.log('ads-list=' + JSON.stringify(ads));
+      this.ads = ads;
+    });
+  }
 
 }
