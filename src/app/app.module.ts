@@ -1,9 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AdsListComponent } from './ads-list/ads-list.component';
+import { HttpModule } from '@angular/http'
+import { FormsModule } from '@angular/forms'
+
+import {
+  AdsListComponent,
+  AdsService
+   } from './ads-list/index'
 
 @NgModule({
   declarations: [
@@ -12,9 +17,11 @@ import { AdsListComponent } from './ads-list/ads-list.component';
     AdsListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [AdsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
