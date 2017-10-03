@@ -10,4 +10,4 @@ case "$TRAVIS_BRANCH" in
 esac
 
 npm install
-ng build
+ng build --env=$APP_ENV
