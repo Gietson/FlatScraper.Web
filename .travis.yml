@@ -1,7 +1,4 @@
 language: node_js
-dist: trusty
-sudo: required
-mono: none
 node_js: 
   - 7
 branches:
@@ -9,9 +6,7 @@ branches:
     - master
 before_script:
   - chmod -R a+x scripts
-  - npm install -g @angular/cli
-  - npm install -g karma
-  - npm install -g rxjs
+  - npm install -g --silent @angular/cli
 script:
   - ./scripts/travis-build.sh
 after_success:
