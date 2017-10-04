@@ -8,14 +8,22 @@ import { IAd } from "../ads-list/shared/ads.model";
   styleUrls: ['./ads-list.component.css']
 })
 export class AdsListComponent implements OnInit {
+  totalPages: number;
+  currentPage: number;
+  resultsPerPage: number;
+  totalResults: number;
   ads: IAd[];
 
   constructor(private adsService: AdsService) { }
 
   ngOnInit() {
-    this.adsService.getAds().subscribe((ads) => {
-      console.log('ads-list=' + JSON.stringify(ads));
-      this.ads = ads;
+    this.adsService.getAds().subscribe((result) => {
+      console.log('ads-list=' + JSON.stringify(result));
+      this.ads = result.items;
+      this.currentPage = result.currentPage;
+      this.resultsPerPage = result.resultsPerPage;
+      this.totalPages = result.totalPages;
+      this.totalResults = result.totalResults;
     });
   }
 
