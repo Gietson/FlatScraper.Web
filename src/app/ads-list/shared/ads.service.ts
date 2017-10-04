@@ -9,7 +9,7 @@ export class AdsService {
   baseUrl: string;
 
   constructor(private http: Http) {
-    this.baseUrl = '/api/ad';
+    this.baseUrl = 'http://localhost:5000/api/ad';
   }
 
   getAds(): Observable<any> {
