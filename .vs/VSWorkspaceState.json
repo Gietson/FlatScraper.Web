@@ -3,8 +3,7 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\ads-list",
-    "\\src\\app\\ads-list\\shared"
+    "\\src\\app\\ads-list"
   ],
   "PreviewInSolutionExplorer": false
 }

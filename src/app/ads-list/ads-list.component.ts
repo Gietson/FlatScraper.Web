@@ -13,12 +13,13 @@ export class AdsListComponent implements OnInit {
   resultsPerPage: number;
   totalResults: number;
   ads: IAd[];
-
+  isBusy = true;
   constructor(private adsService: AdsService) { }
 
   ngOnInit() {
     this.adsService.getAds().subscribe((result) => {
-      console.log('ads-list=' + JSON.stringify(result));
+      this.isBusy = false;
+      //console.log('ads-list=' + JSON.stringify(result));
       this.ads = result.items;
       this.currentPage = result.currentPage;
       this.resultsPerPage = result.resultsPerPage;

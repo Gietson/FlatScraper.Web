@@ -1,0 +1,37 @@
+  <md-card class="example-card">
+    <md-card-header>
+      <div md-card-avatar class="example-header-image">
+        <img md-card-image src="./../../../assets/img/no_photo.png">
+      </div>
+
+      <md-card-title><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></md-card-title>
+        
+
+      <md-card-subtitle>{{ad.idAds}}</md-card-subtitle>
+    </md-card-header>
+    
+    <md-card-content>
+      <p>
+        {{ad.price | currency: 'PLN':true:'1.0'}}
+        {{ad.adDetails?.city}}
+        {{ad.adDetails?.district}}
+        Size: {{ad.adDetails?.size}}
+        Agency: {{ad.adDetails?.agency}}
+        Number of rooms: {{ad.adDetails?.numberOfRomms}}
+        UpdatedAt: {{ad.adDetails?.updatedAt}}
+        CreatedAt: {{ad.adDetails?.createAt}}
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <!--<button md-raised-button>LIKE</button>
+      <button md-raised-button color="primary">SHARE</button>-->
+      <!--<button md-button>LIKE</button>
+      <button md-button>SHARE</button>
+      <button md-icon-button color="warn">
+        <md-icon class="md-24" aria-label="Example icon-button with a heart icon">favorite</md-icon>
+      </button>-->
+      <!--<button md-icon-button>
+        <md-icon class="md-24" aria-label="Example icon-button with a heart icon">favorite</md-icon>
+      </button>-->
+    </md-card-actions>
+  </md-card>

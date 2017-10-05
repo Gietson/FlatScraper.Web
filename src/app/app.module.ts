@@ -44,14 +44,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import {
   AdsListComponent,
-  AdsService
-   } from './ads-list/index'
+  AdsService,
+  AdThumbnailComponent
+   } from './ads-list/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AdsListComponent
+    AdsListComponent,
+    AdThumbnailComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,6 @@ import {
     MdTooltipModule
   ],
   providers: [AdsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, NavbarComponent]
 })
 export class AppModule { }

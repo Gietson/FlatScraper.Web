@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   //templateUrl: './app.component.html',
   template:`
+  <app-navbar></app-navbar>
   <ads-list></ads-list>`,
   styleUrls: ['./app.component.css']
 })
