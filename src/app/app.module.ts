@@ -34,7 +34,7 @@ import {
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  MdStepperModule,
+  MdStepperModule
   } from '@angular/material';
 
 import { CdkTableModule } from '@angular/cdk/table';
@@ -67,7 +67,6 @@ import {
     MdCardModule,
     MdCheckboxModule,
     MdChipsModule,
-    MdStepperModule,
     MdDatepickerModule,
     MdDialogModule,
     MdExpansionModule,
@@ -91,7 +90,8 @@ import {
     MdTableModule,
     MdTabsModule,
     MdToolbarModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdStepperModule
   ],
   providers: [AdsService],
   bootstrap: [AppComponent, NavbarComponent]
