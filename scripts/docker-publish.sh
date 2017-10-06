@@ -13,6 +13,6 @@ case "$TRAVIS_BRANCH" in
 esac
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-docker build -f Dockerfile.$DOCKER_ENV -t flatscraper.web:$DOCKER_TAG .
+docker build -f Dockerfile -t flatscraper.web:$DOCKER_TAG .
 docker tag flatscraper.web:$DOCKER_TAG $DOCKER_USERNAME/flatscraper.web:$DOCKER_TAG
 docker push $DOCKER_USERNAME/flatscraper.web:$DOCKER_TAG
