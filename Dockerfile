@@ -10,4 +10,5 @@ RUN npm install
 EXPOSE 4200
 
 # Serve the app
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+RUN ng build --prod

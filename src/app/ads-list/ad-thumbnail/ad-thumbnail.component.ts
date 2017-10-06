@@ -7,6 +7,6 @@ import { IAd } from "../index";
   styleUrls: ['./ad-thumbnail.component.css']
 })
 export class AdThumbnailComponent {
-  @Input() ad: IAd[];
+  @Input() ad: any;
 
 }

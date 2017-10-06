@@ -18,7 +18,7 @@ export class AdsService {
     return this.http
       .get(`${this.baseUrl}`)
       .map(response =>
-        <IAd[]>response.json());
+        response.json());
   }
   /*
   getAds(): Observable<IAd[]> {
