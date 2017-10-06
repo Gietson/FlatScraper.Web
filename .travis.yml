@@ -1,4 +1,7 @@
 language: node_js
+dist: trusty
+sudo: required
+mono: none
 node_js: 
   - 6
 branches:
