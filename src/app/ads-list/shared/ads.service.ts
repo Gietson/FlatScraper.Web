@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IAd } from "./";
@@ -14,9 +14,19 @@ export class AdsService {
     console.log(this.baseUrl);
   }
 
-  getAds(): Observable<any> {
+  getAds(page?:number, itemsPerPage?: number): Observable<any> {
+
+    let headers = new Headers();
+    if (page != null && itemsPerPage != null) {
+      headers.append('Pagination', page + ',' + itemsPerPage);
+    }
+    headers.append('Content-Type', 'application/json');
+    headers.append('authentication', `hello`);
+
+    let options = new RequestOptions({ headers: headers });
+
     return this.http
-      .get(`${this.baseUrl}`)
+      .get(`${this.baseUrl}`, options)
       .map(response =>
         response.json());
   }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdsService } from "./shared/ads.service"
 import { IAd } from "../ads-list/shared/ads.model";
 
+import { PageEvent } from '@angular/material';
+
 @Component({
   selector: 'ads-list',
   templateUrl: './ads-list.component.html',
@@ -10,29 +12,35 @@ import { IAd } from "../ads-list/shared/ads.model";
 export class AdsListComponent implements OnInit {
   totalPages: number;
   currentPage: number;
-  resultsPerPage: number;
-  totalResults: number;
   ads: IAd[];
   isBusy = true;
 
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions = [5, 10, 25, 100];
+  totalResults = 100;
+  resultsPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100, 200, 500];
+
+  // MdPaginator Output
+  pageEvent: PageEvent;
 
   constructor(private adsService: AdsService) { }
 
   ngOnInit() {
-    this.adsService.getAds().subscribe((result) => {
+    this.getAds(0, this.resultsPerPage);
+  }
+
+  onPaginateChange(event) {
+    console.log("Current page index: " + JSON.stringify(event));
+    this.getAds(event.pageIndex, event.pageSize);
+  }
+
+  private getAds(page?: number, itemsPerPage?: number) {
+    this.adsService.getAds(page + 1, itemsPerPage).subscribe((result) => {
       this.isBusy = false;
-      //console.log('ads-list=' + JSON.stringify(result));
       this.ads = result.items;
       this.currentPage = result.currentPage;
       this.resultsPerPage = result.resultsPerPage;
       this.totalPages = result.totalPages;
       this.totalResults = result.totalResults;
-
-      this.length = result.totalResults;
-      this.pageSize = result.resultsPerPage;
     });
   }
 

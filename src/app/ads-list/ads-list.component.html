@@ -1,4 +1,4 @@
-<div>
+<div style="padding: 5px">
   <h1>Ads Lists</h1>
   <hr />
   currentPage - {{currentPage}}
@@ -8,14 +8,15 @@
   <hr />
 
   <div class="row">
-    <mat-progress-bar [hidden]="!isBusy" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar *ngIf="isBusy" mode="indeterminate"></mat-progress-bar>
     <div class="col-md-12" *ngFor="let ad of ads">
       <ad-thumbnail [ad]="ad"></ad-thumbnail>
     </div>
 
-    <mat-paginator [length]="length"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions">
+    <mat-paginator [length]="totalResults"
+                   [pageSize]="resultsPerPage"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="onPaginateChange($event)">
     </mat-paginator>
   </div>
 
