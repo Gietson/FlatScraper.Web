@@ -3,10 +3,9 @@
     "",
     "\\scripts",
     "\\src",
-    "\\src\\app",
     "\\src\\app\\ads-list\\ad-thumbnail",
+    "\\src\\app\\ads-list\\shared",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

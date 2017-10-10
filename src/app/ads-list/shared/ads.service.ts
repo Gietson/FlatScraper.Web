@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
+import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IAd } from "./";
@@ -18,28 +18,30 @@ export class AdsService {
 
     let headers = new Headers();
     if (page != null && itemsPerPage != null) {
-      headers.append('Pagination', page + ',' + itemsPerPage);
+      headers.append('X-Pagination-Page', page.toString());
+      headers.append('X-Pagination-ResultPerPage', itemsPerPage.toString());
     }
     headers.append('Content-Type', 'application/json');
-    headers.append('authentication', `hello`);
 
-    let options = new RequestOptions({ headers: headers });
+    let params = new URLSearchParams();
+    params.append("city", "Warszawa");
+    params.append("district", "Mokotów");
+
+    let options = new RequestOptions({ headers: headers, search: params });
 
     return this.http
-      .get(`${this.baseUrl}`, options)
+      .get(this.baseUrl, options)
       .map(response =>
         response.json());
   }
-  /*
-  getAds(): Observable<IAd[]> {
-    return this.http.get("/api/ad")
-      .map((response: Response) => {
-        return <IAd[]>response.json();
-      })
-      .catch(this.handleError);
-  }*/
-
-  private handleError(error: Response) {
-    return Observable.throw(error.statusText);
+  
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
   }
+
+  private handleErrorObservable(error: Response | any) {
+    console.error(error.message || error);
+    return Observable.throw(error.message || error);
+  } 
 }

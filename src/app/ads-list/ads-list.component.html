@@ -1,11 +1,49 @@
 <div style="padding: 5px">
   <h1>Ads Lists</h1>
-  <hr />
-  currentPage - {{currentPage}}
+  <hr/>
+  <div class="search-container">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filter panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Type your data
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput placeholder="City">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="District">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Price From" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Price To" type="number">
+      </mat-form-field>
+
+    <mat-form-field>
+      <input matInput #sizeFrom placeholder="Size From" type="number" maxlength="3">
+      <mat-hint align="end">{{sizeFrom.value.length}} / 3</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput #sizeTo placeholder="Size To" type="number" maxlength="3">
+      <mat-hint align="end">{{sizeTo.value.length}} / 3</mat-hint>
+    </mat-form-field>
+    </mat-expansion-panel>
+
+  </div>
+
+
+  <!--currentPage - {{currentPage}}
   resultsPerPage- {{resultsPerPage}}
   totalPages - {{totalPages}}
-  totalResults - {{totalResults}}
-  <hr />
+  totalResults - {{totalResults}}-->
+  <hr/>
 
   <div class="row">
     <mat-progress-bar *ngIf="isBusy" mode="indeterminate"></mat-progress-bar>
