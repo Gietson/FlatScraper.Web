@@ -3,8 +3,10 @@
     "",
     "\\scripts",
     "\\src",
-    "\\src\\app\\ads-list\\ad-thumbnail",
-    "\\src\\app\\ads-list\\shared",
+    "\\src\\app",
+    "\\src\\app\\ads-list",
+    "\\src\\assets",
+    "\\src\\assets\\img",
     "\\src\\environments"
   ],
   "PreviewInSolutionExplorer": false

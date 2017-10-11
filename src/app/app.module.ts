@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CdkTableModule } from '@angular/cdk/table';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -97,8 +96,7 @@ import {
     MatStepperModule,
 
     BrowserAnimationsModule,
-    FlexLayoutModule,
-    CdkTableModule
+    FlexLayoutModule
   ],
   providers: [
     AdsService

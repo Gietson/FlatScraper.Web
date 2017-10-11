@@ -3,7 +3,9 @@ import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IAd } from "./";
-import { environment } from  '../../../environments/environment';
+import { IAdSearch } from "./";
+import { environment } from '../../../environments/environment';
+
 
 @Injectable()
 export class AdsService {
@@ -14,7 +16,7 @@ export class AdsService {
     console.log(this.baseUrl);
   }
 
-  getAds(page?:number, itemsPerPage?: number): Observable<any> {
+  getAds(page?: number, itemsPerPage?: number, form?: IAdSearch): Observable<any> {
 
     let headers = new Headers();
     if (page != null && itemsPerPage != null) {
@@ -23,18 +25,26 @@ export class AdsService {
     }
     headers.append('Content-Type', 'application/json');
 
-    let params = new URLSearchParams();
-    params.append("city", "Warszawa");
-    params.append("district", "Mokotów");
+    let params = this.prepareSearchParams(form);
 
     let options = new RequestOptions({ headers: headers, search: params });
-
     return this.http
       .get(this.baseUrl, options)
       .map(response =>
         response.json());
   }
-  
+
+  private prepareSearchParams(form: IAdSearch) {
+    let params = new URLSearchParams();
+    if (form) {
+      Object.keys(form).forEach(key => {
+        params.append(key, form[key]);
+        console.log('key=' + key + ', form[key]=' + form[key]);
+      });
+    }
+    return params;
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || {};
@@ -43,5 +53,5 @@ export class AdsService {
   private handleErrorObservable(error: Response | any) {
     console.error(error.message || error);
     return Observable.throw(error.message || error);
-  } 
+  }
 }

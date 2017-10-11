@@ -1,7 +1,8 @@
 <div style="padding: 5px">
   <h1>Ads Lists</h1>
   <hr/>
-  <div class="search-container">
+
+  <div class="form-inline">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -13,29 +14,34 @@
       </mat-expansion-panel-header>
 
       <mat-form-field>
-        <input matInput placeholder="City">
+        <input matInput [(ngModel)]="form.city" placeholder="City">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="District">
+        <input matInput [(ngModel)]="form.district" placeholder="District">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Price From" type="number">
+        <input matInput [(ngModel)]="form.priceFrom" ngModel placeholder="Price From" type="number">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Price To" type="number">
+        <input matInput [(ngModel)]="form.priceTo" placeholder="Price To" type="number">
       </mat-form-field>
 
-    <mat-form-field>
-      <input matInput #sizeFrom placeholder="Size From" type="number" maxlength="3">
-      <mat-hint align="end">{{sizeFrom.value.length}} / 3</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput #sizeTo placeholder="Size To" type="number" maxlength="3">
-      <mat-hint align="end">{{sizeTo.value.length}} / 3</mat-hint>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="form.sizeFrom" #sizeFrom  maxlength="3" placeholder="Size From">
+        <mat-hint align="end">{{sizeFrom.value.length}} / 3</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" maxlength="3" [(ngModel)]="form.sizeTo" #sizeTo placeholder="Size To">
+        <mat-hint align="end">{{sizeTo.value.length}} / 3</mat-hint>
+      </mat-form-field>
+     
+      <mat-checkbox [(ngModel)]="form.agency" [align]="end">Agency</mat-checkbox>
+      
+      <button mat-button color="primary" (click)="search()">Search</button>
     </mat-expansion-panel>
 
+    <pre>{{form | json}}</pre>
   </div>
 
 

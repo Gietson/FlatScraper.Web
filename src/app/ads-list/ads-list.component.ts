@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdsService } from "./shared/ads.service"
 import { IAd } from "../ads-list/shared/ads.model";
+import { IAdSearch } from "../ads-list/shared/adsSearch.model";
 
 import { PageEvent } from '@angular/material';
 
@@ -14,6 +15,7 @@ export class AdsListComponent implements OnInit {
   currentPage: number;
   ads: IAd[];
   isBusy = true;
+  form = <IAdSearch>{};
 
   totalResults = 100;
   resultsPerPage = 10;
@@ -33,8 +35,8 @@ export class AdsListComponent implements OnInit {
     this.getAds(event.pageIndex, event.pageSize);
   }
 
-  private getAds(page?: number, itemsPerPage?: number) {
-    this.adsService.getAds(page + 1, itemsPerPage).subscribe((result) => {
+  private getAds(page?: number, itemsPerPage?: number, form?:IAdSearch) {
+    this.adsService.getAds(page + 1, itemsPerPage, form).subscribe((result) => {
       this.isBusy = false;
       this.ads = result.items;
       this.currentPage = result.currentPage;
@@ -42,6 +44,10 @@ export class AdsListComponent implements OnInit {
       this.totalPages = result.totalPages;
       this.totalResults = result.totalResults;
     });
+  }
+
+  search() {
+    this.getAds(0, this.resultsPerPage, this.form);
   }
 
 }
