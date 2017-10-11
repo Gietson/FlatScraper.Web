@@ -5,9 +5,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\ads-list",
+    "\\src\\app\\ads-list\\ad-thumbnail",
+    "\\src\\app\\ads-list\\shared",
     "\\src\\assets",
     "\\src\\assets\\img",
     "\\src\\environments"
   ],
+  "SelectedNode": "\\src\\app\\ads-list\\ad-thumbnail\\ad-thumbnail.component.html",
   "PreviewInSolutionExplorer": false
 }
