@@ -24,7 +24,7 @@ export class AdsListComponent implements OnInit {
   // MdPaginator Output
   pageEvent: PageEvent;
 
-  constructor(private adsService: AdsService) { }
+  constructor(private adsService: AdsService) {}
 
   ngOnInit() {
     this.getAds(0, this.resultsPerPage);
@@ -35,7 +35,7 @@ export class AdsListComponent implements OnInit {
     this.getAds(event.pageIndex, event.pageSize);
   }
 
-  private getAds(page?: number, itemsPerPage?: number, form?:IAdSearch) {
+  private getAds(page?: number, itemsPerPage?: number, form?: IAdSearch) {
     this.adsService.getAds(page + 1, itemsPerPage, form).subscribe((result) => {
       this.isBusy = false;
       this.ads = result.items;
@@ -48,6 +48,10 @@ export class AdsListComponent implements OnInit {
 
   search() {
     this.getAds(0, this.resultsPerPage, this.form);
+  }
+
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 
 }

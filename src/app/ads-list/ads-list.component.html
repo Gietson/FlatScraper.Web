@@ -51,7 +51,7 @@
 
   <div class="row">
     <mat-progress-bar *ngIf="isBusy" mode="indeterminate"></mat-progress-bar>
-    <div class="col-md-12" *ngFor="let ad of ads">
+    <div class="col-md-12" *ngFor="let ad of ads; trackBy: trackByFn">
       <ad-thumbnail [ad]="ad"></ad-thumbnail>
     </div>
 
