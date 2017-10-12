@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IAd } from "../index";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ad-thumbnail',
   templateUrl: './ad-thumbnail.component.html',
   styleUrls: ['./ad-thumbnail.component.css']

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AdsService } from "./shared/ads.service"
 import { IAd } from "../ads-list/shared/ads.model";
 import { IAdSearch } from "../ads-list/shared/adsSearch.model";
@@ -6,6 +6,7 @@ import { IAdSearch } from "../ads-list/shared/adsSearch.model";
 import { PageEvent } from '@angular/material';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ads-list',
   templateUrl: './ads-list.component.html',
   styleUrls: ['./ads-list.component.css']
