@@ -31,12 +31,12 @@ export class AdsListComponent implements OnInit {
   }
 
   onPaginateChange(event) {
-    console.log("Current page index: " + JSON.stringify(event));
     this.getAds(event.pageIndex, event.pageSize);
   }
 
   private getAds(page?: number, itemsPerPage?: number, form?: IAdSearch) {
     this.adsService.getAds(page + 1, itemsPerPage, form).subscribe((result) => {
+      console.log(result);
       this.isBusy = false;
       this.ads = result.items;
       this.currentPage = result.currentPage;
