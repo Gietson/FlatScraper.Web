@@ -50,7 +50,7 @@ export class AdsListComponent implements OnInit {
     this.getAds(0, this.resultsPerPage, this.form);
   }
 
-  trackByFn(index, item) {
+  trackByFn(index, ad) {
     return index; // or item.id
   }
 
