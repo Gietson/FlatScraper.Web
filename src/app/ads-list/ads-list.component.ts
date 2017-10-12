@@ -6,7 +6,6 @@ import { IAdSearch } from "../ads-list/shared/adsSearch.model";
 import { PageEvent } from '@angular/material';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ads-list',
   templateUrl: './ads-list.component.html',
   styleUrls: ['./ads-list.component.css']
