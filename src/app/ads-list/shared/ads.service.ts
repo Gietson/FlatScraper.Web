@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IAd } from "./";
@@ -11,38 +11,43 @@ import { environment } from '../../../environments/environment';
 export class AdsService {
   baseUrl: string;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.baseUrl = environment.apiUrl + 'ad';
     console.log(this.baseUrl);
   }
 
   getAds(page?: number, itemsPerPage?: number, form?: IAdSearch): Observable<any> {
 
-    let headers = new Headers();
-    if (page != null && itemsPerPage != null) {
-      headers.append('X-Pagination-Page', page.toString());
-      headers.append('X-Pagination-ResultPerPage', itemsPerPage.toString());
-    }
-    headers.append('Content-Type', 'application/json');
+    const headers = this.prepareHeader(page, itemsPerPage);
+    const params = this.prepareSearchParams(form);
 
-    let params = this.prepareSearchParams(form);
-
-    let options = new RequestOptions({ headers: headers, search: params });
     return this.http
-      .get(this.baseUrl, options)
-      .map(response =>
-        response.json());
+      .get(this.baseUrl, { headers: headers, params: params })
+      .map(response => response);
   }
 
   private prepareSearchParams(form: IAdSearch) {
-    let params = new URLSearchParams();
+    let params = new HttpParams();
     if (form) {
       Object.keys(form).forEach(key => {
-        params.append(key, form[key]);
+        params = params.set(key, form[key]);
         console.log('key=' + key + ', form[key]=' + form[key]);
       });
     }
     return params;
+  }
+
+  private prepareHeader(page?: number, itemsPerPage?: number) {
+    let headers = new HttpHeaders();
+    if (page != null && itemsPerPage != null) {
+      console.log('dodaje pagination page=' + page + ', itemsPerPage=' + itemsPerPage);
+      headers = headers.set('X-Pagination-Page', page.toString());
+      headers = headers.set('X-Pagination-ResultPerPage', itemsPerPage.toString());
+    }
+    headers = headers.set('Content-Type', 'application/json');
+    console.log('headers = ' + JSON.stringify(headers));
+
+    return headers;
   }
 
   private extractData(res: Response) {

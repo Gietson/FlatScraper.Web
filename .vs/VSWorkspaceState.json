@@ -1,15 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\scripts",
     "\\src",
     "\\src\\app",
     "\\src\\app\\ads-list",
-    "\\src\\app\\ads-list\\ad-thumbnail",
     "\\src\\app\\ads-list\\shared",
-    "\\src\\assets",
-    "\\src\\assets\\img",
-    "\\src\\environments"
+    "\\src\\app\\user",
+    "\\src\\app\\user\\login",
+    "\\src\\app\\user\\shared"
   ],
+  "SelectedNode": "\\src\\app\\user\\login\\login.component.ts",
   "PreviewInSolutionExplorer": false
 }

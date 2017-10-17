@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
+import { routing } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import {
@@ -50,19 +51,33 @@ import {
   AdThumbnailComponent
   } from './ads-list/index';
 
+import {
+  LoginComponent,
+  RegisterComponent,
+  ProfileComponent,
+  AuthService
+  } from './user/index';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { TokenInterceptor } from './user/shared/token.interceptor'
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AdsListComponent,
-    AdThumbnailComponent
+    AdThumbnailComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    routing,
     MatNativeDateModule,
-
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -94,13 +109,20 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
-
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [
-    AdsService
+    AdsService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent, NavbarComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
