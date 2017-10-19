@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { routing } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { Error404Component } from './errors/404.component';
 
 import {
   MatAutocompleteModule,
@@ -71,7 +72,8 @@ import { AuthGuard } from './user/shared/auth.guard';
     AdThumbnailComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
