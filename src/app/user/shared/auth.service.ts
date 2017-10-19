@@ -1,58 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { environment } from '../../../environments/environment';
-import { ILogin } from '../login/login.model'
+import { ILogin } from '../login/login.model';
+import { IRegister } from '../register/register.model';
+import { Router } from '@angular/router'
 
 @Injectable()
 export class AuthService {
   baseUrl: string;
   headers: Headers;
 
-  constructor(private http: Http) {
-    this.baseUrl = environment.apiUrl + 'auth/login';
+  constructor(private http: Http, private router: Router) {
+    this.baseUrl = environment.apiUrl + 'auth';
     console.log(this.baseUrl);
-
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: this.headers });
   }
 
-  login(model: ILogin): Observable<any[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    let body = { email: model.email, password: model.password };
-
-    console.log('service login, baseUrl=' + this.baseUrl + ', body=' + JSON.stringify(body));
-
-    return this.http.post(this.baseUrl, model, options)
-      .map(this.parseData)
-      .catch(this.handleError);
+  public login(model: ILogin) {
+    return this.http.post(this.baseUrl + '/login', model)
+      .map((response: Response) => {
+        // login successful if there's a jwt token in the response
+        let user = response.json();
+        if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      });
   }
 
-  getToken() {
-    console.log('[getToken] Rozpoczynam pobieranie tokenu');
+  public register(model: IRegister) {
+    return this.http.post(this.baseUrl + '/register', model);
+  }
+
+  public getToken() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
-
-      console.log('[getToken] Token = ' + currentUser.token);
-      //let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-      //return new RequestOptions({ headers: headers });
       return currentUser.token;
     }
-
-    console.log('[getToken] Token nie został znaleziony');
+    return false;
   }
 
-  private parseData(res: Response) {
-    console.log('parseData=' + JSON.stringify(res.json()));
-    let user = res.json();
-    if (user && user.token) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
+  public getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
 
-    };
+  public isAuthenticated(): boolean {
+    const isAuthorized: boolean = !!localStorage.getItem('currentUser');
+    return isAuthorized;
   }
 
   // Displays the error message
@@ -70,6 +66,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
   }
 
 }

@@ -8,11 +8,13 @@ import {
   ProfileComponent
 } from "./user/index";
 
+import { AuthGuard } from './user/shared/auth.guard';
+
 const appRoutes: Routes = [
-  { path: '', component: AdsListComponent },
+  { path: '', component: AdsListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

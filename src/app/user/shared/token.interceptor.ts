@@ -11,13 +11,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  authService: AuthService;
-  constructor(private injector: Injector,) {
-    this.authService = injector.get(AuthService);
-  }
+  constructor(private authService: AuthService) {}
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('jestem w tokenInterceptor request= ' + JSON.stringify(request));
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.authService.getToken()}`

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ILogin } from './login.model';
 import { AuthService } from '../shared/auth.service';
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -9,20 +10,39 @@ import { AuthService } from '../shared/auth.service';
 })
 export class LoginComponent implements OnInit {
   model = <ILogin>{};
-  hide = true;
+  loginInvalid: true;
+  returnUrl: string;
 
-  errorMessage: string;
-  posts: any[];
-
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    // reset login status
+    this.authService.logout();
 
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
-    this.authService.login(this.model).subscribe();
-
+    this.authService.login(this.model)/*.subscribe(resp => {
+      if (!resp) {
+        this.loginInvalid = true;
+      } else {
+        this.router.navigate(['']);
+      }
+    });*/
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          //this.alertService.error('Username or password is incorrect');
+          console.error('login err=' + error);
+          //this.loading = false;
+        });
   }
 
 }

@@ -4,9 +4,20 @@
     Flat Scraper
   </span>
   <span class="fill-remaining-space"></span>
-  <button mat-button>Notification</button>
-  <button mat-button>Block ad</button>
-  <button mat-button routerLink="login">Login</button>
-  <button mat-button routerLink="register">Register</button>
-  <!--<button Mat-button (click)="onLogout()">Logout</button>-->
+
+  <button mat-button *ngIf="!isAuthenticated()" [routerLink]="['/login']">Login</button>
+  <div *ngIf="isAuthenticated()">
+    <button mat-button>Notification</button>
+    <button mat-button>Block ad</button>
+    <button mat-button [mat-menu-trigger-for]="menu">
+      Welcome {{currentUser?.user?.username}}
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/profile']">Profile</button>
+    <!--<button mat-menu-item>Settings</button>-->
+    <button mat-menu-item (click)="onLogout()">Sign Out</button>
+  </mat-menu>
+
 </mat-toolbar>

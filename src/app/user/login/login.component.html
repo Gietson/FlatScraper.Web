@@ -1,61 +1,24 @@
-<div class="login" fxLayoutAlign="space-around layout-padding">
-  <mat-card fxLayout="column" flex-gt-sm="50" flex-gt-md="33" flex-gt="100">
-    <mat-toolbar color="primary">
-      Login panel
-    </mat-toolbar>
-    <mat-card-content fxLayout="column">
-      <mat-form-field>
-        <input matInput [(ngModel)]="model.email" placeholder="Email" type="email" required>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="model.password" placeholder="Password" type="password" required>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="login()">Login</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="flex-container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="card-container">
+    <div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%">
+      <mat-card>
+        <mat-card-title fxLayoutAlign="center">Sign In</mat-card-title>
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-input-container fxFlex="100%">
+              <input matInput required placeholder="Email Address" [(ngModel)]="model.email" autocorrect="off" autocapitalize="off" spellcheck="off">
+            </mat-input-container>
+            <mat-input-container fxFlex="100%">
+              <input matInput required type="password" placeholder="Password" [(ngModel)]="model.password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off">
+            </mat-input-container>
+            <button mat-raised-button color="primary" (click)="login()">Sign In</button>
+            <a mat-button [routerLink]="['/register']">Sign Up with Email</a>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center">
+            <mat-spinner *ngIf="loading | async"></mat-spinner>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
-posts:{{posts | json}}
-error: {{errorMessage | json}}
-<!--<div fxLayout="column" fxLayoutAlign="center center">
-  <mat-card>
-    <mat-toolbar color="primary">
-      <div class="mat-toolbar-tools">
-        <h2>
-          <span>Login Form</span>
-        </h2>
-      </div>
-    </mat-toolbar>
-
-    <mat-form-field>
-      <input matInput placeholder="Enter your email" [(ngModel)]="model.email" required>
-      <mat-error *ngIf="model.email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="model.password">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-
-
-    <button mat-button color="primary" (click)="login()">Login</button>
-
-  </mat-card>
-</div>-->
-
-
-<!--<div fxLayout="row" fxLayoutAlign="center center" fxFlex="33">
-<mat-toolbar color="primary" class="mat-elevation-z10">
-  Login panel
-</mat-toolbar>-->
-
-
-<!--<mat-sidenav-container>
-  <mat-sidenav mode="side" align="end" opened class="mat-elevation-z6">
-    details
-  </mat-sidenav>
-
-  models
-</mat-sidenav-container>-->
-<!--</div>-->

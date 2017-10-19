@@ -1,0 +1,9 @@
+.flex-container {
+  position: relative;
+  min-height: 100vh;
+  margin-top: 5%;
+}
+
+.mat-form-field {
+  width: auto;
+}
