@@ -27,11 +27,12 @@ export class AuthService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
-      });
+      })
+      .catch(this.handleError);
   }
 
   public register(user: RegisterUser) {
-    return this.http.post(this.baseUrl + '/register', user);
+    return this.http.post(this.baseUrl + '/register', user).catch(this.handleError);
   }
 
   public getToken() {
