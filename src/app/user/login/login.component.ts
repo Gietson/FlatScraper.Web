@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ILogin } from './login.model';
+import { LoginUser } from './login.model';
 import { AuthService } from '../shared/auth.service';
 import { Router, ActivatedRoute } from '@angular/router'
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -9,16 +10,23 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model = <ILogin>{};
+  public form: FormGroup;
   loginInvalid: true;
   returnUrl: string;
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: ["", Validators.email],
+      password: ["", Validators.required]
+    });
+
     // reset login status
     this.authService.logout();
 
@@ -26,14 +34,17 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  login() {
-    this.authService.login(this.model)/*.subscribe(resp => {
-      if (!resp) {
-        this.loginInvalid = true;
-      } else {
-        this.router.navigate(['']);
-      }
-    });*/
+  public submit() {
+    // create na new LoginUser object
+    const user: LoginUser = new LoginUser();
+    user.email = this.form.get("email").value;
+    user.password = this.form.get("password").value;
+
+    // trim values
+    user.email.trim();
+    user.password.trim();
+
+    this.authService.login(user)
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
@@ -44,5 +55,4 @@ export class LoginComponent implements OnInit {
           //this.loading = false;
         });
   }
-
 }

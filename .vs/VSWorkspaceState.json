@@ -3,12 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\errors",
     "\\src\\app\\navbar",
     "\\src\\app\\user",
     "\\src\\app\\user\\login",
     "\\src\\app\\user\\register",
     "\\src\\app\\user\\shared"
   ],
-  "SelectedNode": "\\src\\app\\app-routing.module.ts",
+  "SelectedNode": "\\src\\app\\user\\register\\register.component.html",
   "PreviewInSolutionExplorer": false
 }

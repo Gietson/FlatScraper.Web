@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { environment } from '../../../environments/environment';
-import { ILogin } from '../login/login.model';
-import { IRegister } from '../register/register.model';
+import { LoginUser } from '../login/login.model';
+import { RegisterUser } from '../register/register.model';
 import { Router } from '@angular/router'
 
 @Injectable()
@@ -18,8 +18,8 @@ export class AuthService {
     console.log(this.baseUrl);
   }
 
-  public login(model: ILogin) {
-    return this.http.post(this.baseUrl + '/login', model)
+  public login(user: LoginUser) {
+    return this.http.post(this.baseUrl + '/login', user)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         let user = response.json();
@@ -30,8 +30,8 @@ export class AuthService {
       });
   }
 
-  public register(model: IRegister) {
-    return this.http.post(this.baseUrl + '/register', model);
+  public register(user: RegisterUser) {
+    return this.http.post(this.baseUrl + '/register', user);
   }
 
   public getToken() {

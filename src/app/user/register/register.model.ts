@@ -1,7 +1,7 @@
 // register.model.ts
 
-export interface IRegister {
-  email: string;
-  password: string;
-  username: string;
+export class RegisterUser {
+  email?: string;
+  password?: string;
+  username?: string;
 }
