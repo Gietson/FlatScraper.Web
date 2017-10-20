@@ -4,7 +4,11 @@
         <img mat-card-image src="./../../../assets/img/no_photo.png">
       </div>
 
-      <mat-card-title><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></mat-card-title>
+      <mat-card-title>
+        <span><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></span>
+        <span class="fill-remaining-space"></span>
+          {{ ad.adDetails?.createAt | date:'short' }}
+      </mat-card-title>
         
 
       <mat-card-subtitle>{{ad.idAds}}</mat-card-subtitle>

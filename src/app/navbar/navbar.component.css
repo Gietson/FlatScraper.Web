@@ -1,7 +1,3 @@
 .nav.navbar-nav {
   font-size: 15px;
 }
-
-.fill-remaining-space {
-  flex: 1 1 auto;
-}

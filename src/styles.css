@@ -12,3 +12,7 @@ body {
 span.logo {
   cursor: pointer;
 }
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
