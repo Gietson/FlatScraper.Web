@@ -35,6 +35,7 @@ export class AdsListComponent implements OnInit {
   }
 
   private getAds(page?: number, itemsPerPage?: number, form?: IAdSearch) {
+    this.ads = [];
     this.adsService.getAds(page + 1, itemsPerPage, form).subscribe((result) => {
       console.log(result);
       this.isBusy = false;

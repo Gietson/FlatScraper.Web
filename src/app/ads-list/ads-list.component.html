@@ -28,6 +28,13 @@
       </mat-form-field>
 
       <mat-form-field>
+        <input matInput [(ngModel)]="form.pricem2From" ngModel placeholder="Price/M2 From" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="form.pricem2To" placeholder="Price/M2 To" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
         <input matInput type="number" [(ngModel)]="form.sizeFrom" #sizeFrom maxlength="3" placeholder="Size From">
       </mat-form-field>
       <mat-form-field>
