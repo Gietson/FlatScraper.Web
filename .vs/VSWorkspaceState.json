@@ -5,12 +5,11 @@
     "\\src\\app",
     "\\src\\app\\ads-list",
     "\\src\\app\\ads-list\\ad-thumbnail",
+    "\\src\\app\\ads-list\\shared",
     "\\src\\app\\errors",
-    "\\src\\app\\navbar",
-    "\\src\\app\\user",
     "\\src\\app\\user\\login",
     "\\src\\app\\user\\register"
   ],
-  "SelectedNode": "\\src\\app\\ads-list\\ads-list.component.html",
+  "SelectedNode": "\\src\\app\\ads-list\\shared\\adsSearch.model.ts",
   "PreviewInSolutionExplorer": false
 }
