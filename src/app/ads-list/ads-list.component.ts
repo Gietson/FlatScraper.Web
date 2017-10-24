@@ -3,7 +3,7 @@ import { AdsService } from "./shared/ads.service"
 import { IAd } from "../ads-list/shared/ads.model";
 import { IAdSearch } from "../ads-list/shared/adsSearch.model";
 
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'ads-list',
@@ -24,7 +24,7 @@ export class AdsListComponent implements OnInit {
   // MdPaginator Output
   pageEvent: PageEvent;
 
-  constructor(private adsService: AdsService) {}
+  constructor(private adsService: AdsService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getAds(0, this.resultsPerPage);
@@ -43,6 +43,10 @@ export class AdsListComponent implements OnInit {
       this.resultsPerPage = result.resultsPerPage;
       this.totalPages = result.totalPages;
       this.totalResults = result.totalResults;
+
+      this.snackBar.open('Data Loaded!', 'Close', {
+        duration: 2000
+      });
     });
   }
 

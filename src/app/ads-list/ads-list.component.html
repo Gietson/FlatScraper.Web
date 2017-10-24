@@ -28,14 +28,14 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="number" [(ngModel)]="form.sizeFrom" #sizeFrom  maxlength="3" placeholder="Size From">
+        <input matInput type="number" [(ngModel)]="form.sizeFrom" #sizeFrom maxlength="3" placeholder="Size From">
       </mat-form-field>
       <mat-form-field>
         <input matInput type="number" maxlength="3" [(ngModel)]="form.sizeTo" #sizeTo placeholder="Size To">
       </mat-form-field>
-     
+
       <mat-checkbox [(ngModel)]="form.agency">Agency</mat-checkbox>
-      
+
       <button mat-button color="primary" (click)="search()">Search</button>
     </mat-expansion-panel>
 
