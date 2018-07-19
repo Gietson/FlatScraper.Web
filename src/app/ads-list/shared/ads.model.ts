@@ -16,5 +16,6 @@ export interface IAd {
     userName: string;
     updatedAt: Date;
     createAt: Date;
+    photos: string[];
   }
 }
