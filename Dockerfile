@@ -11,4 +11,5 @@ EXPOSE 4200
 
 # Serve the app
 # CMD ["npm", "start"]
-RUN ng build --prod
+# RUN ng build --prod
+CMD ["ng", "serve", "--host", "0.0.0.0" ]
