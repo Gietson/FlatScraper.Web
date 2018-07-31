@@ -1,0 +1,21 @@
+<div class="full-width-header">
+  <mat-toolbar class="fixed-header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-button class="logo" fxLayout="row" fxLayoutAlign="center center">
+      <img src="../../../../assets/img/logo.png" class="angular-logo" width="55px" height="55px">
+      <span>Flat Scraper</span>
+    </button>
+
+    <div>
+      <button mat-button>Notification</button>
+      <button mat-button>Blocked ad</button>
+
+      <button mat-button [mat-menu-trigger-for]="menu">Welcome</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item>Sign Out</button>
+      </mat-menu>
+
+    </div>
+
+  </mat-toolbar>
+</div>
